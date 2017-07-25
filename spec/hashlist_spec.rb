@@ -4,6 +4,24 @@ RSpec.describe Hashlist do
 
   let(:hashlist) { described_class.new }
 
+  let(:enumerables) {
+    [
+      :all?, :any?, :chunk, :chunk_while,
+      :collect, :collect_concat, :count, :cycle,
+      :detect, :drop, :drop_while, :each,
+      :each_cons, :each_entry, :each_slice,
+      :each_with_index, :each_with_object, :entries,
+      :find, :find_all, :find_index, :first,
+      :flat_map, :grep, :grep_v, :group_by, :include?,
+      :inject, :lazy, :map, :max, :max_by, :member?,
+      :min, :min_by, :minmax, :minmax_by, :none?,
+      :one?, :partition, :reduce, :reject,
+      :reverse_each, :select, :slice_after,
+      :slice_before, :slice_when, :sort, :sort_by,
+      :sum, :take, :take_while, :to_a, :to_h, :uniq, :zip
+    ]
+  }
+
   it "can be initialized" do
     expect { Hashlist.new }.not_to raise_error
   end
@@ -55,5 +73,30 @@ RSpec.describe Hashlist do
     hashlist << "test"
     hashlist << "testing"
     expect(hashlist.inspect).to eq(["test", "testing"])
+  end
+
+  it "has set intersection" do
+    hashlist << "testing"
+    hashlist << "test"
+    hl = Hashlist.new
+    hl << "test"
+    hl << "other test"
+
+    expect(hashlist & hl).to eq(["test"])
+  end
+
+  it "has * method" do
+    hashlist << "testing"
+    hashlist << "test"
+    expect(hashlist * 2).to eq(["testing", "test", "testing", "test"])
+  end
+
+  it "has enumerables" do
+    hashlist << "testing"
+    hashlist << "test"
+
+    enumerables.each do |e|
+      expect(hashlist.respond_to?(e)).to be_truthy
+    end
   end
 end
