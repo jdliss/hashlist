@@ -1,6 +1,7 @@
 class Hashlist
   def initialize
     @hash = {}
+    @tail_index = 0
 
     enumerables.each do |enum|
       self.class.send(:define_method, enum) { values.send(enum) }
@@ -74,8 +75,10 @@ class Hashlist
 
   private
 
-  def _add_(val, index=keys.max + 1)
+  def _add_(val, index=@tail_index)
     @hash[index] = val
+    @tail_index += 1
+    val
   end
 
   def _get_(index)

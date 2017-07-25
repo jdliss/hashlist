@@ -31,7 +31,7 @@ RSpec.describe Hashlist do
     expect(hashlist[0]).to eq("test")
   end
 
-  it "can get value at index using braket notation" do
+  it "can get value at index using bracket notation" do
     hashlist << "test"
     expect(hashlist[0]).to eq("test")
   end
