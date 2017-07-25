@@ -1,5 +1,4 @@
-require 'rspec'
-require_relative 'hashlist'
+require 'hashlist'
 
 RSpec.describe Hashlist do
 
@@ -51,7 +50,7 @@ RSpec.describe Hashlist do
     expect(hashlist.to_s).to eq("test\ntesting")
   end
 
-  it "has an inspec method" do
+  it "has an inspect method" do
     expect(hashlist.inspect).to eq([])
     hashlist << "test"
     hashlist << "testing"
