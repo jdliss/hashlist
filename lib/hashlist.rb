@@ -63,10 +63,6 @@ class Hashlist
     end
   end
 
-  def each
-    values.each { |val| yield val }
-  end
-
   protected
 
   def values
