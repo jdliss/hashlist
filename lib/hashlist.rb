@@ -35,18 +35,20 @@ class Hashlist
   end
 
   def +(val)
-    if val.is_a?(Hashlist)
+    case val.class.to_s
+    when "Hashlist"
       values + val.values
     else
-      raise TypeError, "no implicit conversion of #{val.class} into #{self.class}"
+      raise_type_error!(val)
     end
   end
 
   def &(val)
-    if val.is_a?(Hashlist)
+    case val.class.to_s
+    when "Hashlist"
       values & val.values
     else
-      raise TypeError, "no implicit conversion of #{val.class} into #{self.class}"
+      raise_type_error!(val)
     end
   end
 
@@ -57,7 +59,7 @@ class Hashlist
     when "Integer"
       values * val
     else
-      raise TypeError, "no implicit conversion of #{val.class} into #{self.class}"
+      raise_type_error!(val)
     end
   end
 
@@ -85,6 +87,10 @@ class Hashlist
 
   def keys
     @hash.keys.empty? ? [-1] : @hash.keys
+  end
+
+  def raise_type_error!(val)
+    raise TypeError, "no implicit conversion of #{val.class} into #{self.class}"
   end
 
   def define_enumerables!
