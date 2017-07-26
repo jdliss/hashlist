@@ -6,9 +6,9 @@ RSpec.describe Hashlist do
 
   let(:enumerables) {
     [
-      :all?, :any?, :chunk, :chunk_while,
-      :collect, :collect_concat, :count, :cycle,
-      :detect, :drop, :drop_while, :each,
+      :all?, :any?, :bsearch, :bsearch_index, :chunk,
+      :chunk_while, :collect, :collect_concat, :count,
+      :cycle, :detect, :drop, :drop_while, :each,
       :each_cons, :each_entry, :each_slice,
       :each_with_index, :each_with_object, :entries,
       :find, :find_all, :find_index, :first,

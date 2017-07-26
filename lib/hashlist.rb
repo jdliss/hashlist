@@ -3,9 +3,7 @@ class Hashlist
     @hash = {}
     @tail_index = 0
 
-    enumerables.each do |enum|
-      self.class.send(:define_method, enum) { values.send(enum) }
-    end
+    define_enumerables!
   end
 
   def <<(val)
@@ -89,11 +87,17 @@ class Hashlist
     @hash.keys.empty? ? [-1] : @hash.keys
   end
 
+  def define_enumerables!
+    enumerables.each do |enum|
+      self.class.send(:define_method, enum) { values.send(enum) }
+    end
+  end
+
   def enumerables
     [
-      :all?, :any?, :chunk, :chunk_while,
-      :collect, :collect_concat, :count, :cycle,
-      :detect, :drop, :drop_while, :each,
+      :all?, :any?, :bsearch, :bsearch_index, :chunk,
+      :chunk_while, :collect, :collect_concat, :count,
+      :cycle, :detect, :drop, :drop_while, :each,
       :each_cons, :each_entry, :each_slice,
       :each_with_index, :each_with_object, :entries,
       :find, :find_all, :find_index, :first,
@@ -106,5 +110,4 @@ class Hashlist
       :sum, :take, :take_while, :to_a, :to_h, :uniq, :zip
     ]
   end
-
 end
