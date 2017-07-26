@@ -81,10 +81,6 @@ class Hashlist
     @hash[index]
   end
 
-  def keys
-    @hash.keys.empty? ? [-1] : @hash.keys
-  end
-
   def raise_type_error!(val)
     raise TypeError, "no implicit conversion of #{val.class} into #{self.class}"
   end
